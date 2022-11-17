@@ -3,17 +3,20 @@ import { IEthereumProvider } from "./types/Provider";
 class RobinhoodWalletDetectProvider {
   constructor() {}
 
-  async getProvider(): IEthereumProvider {
+  async getProvider(): Promise<IEthereumProvider | undefined> {
     const robinhoodWalletInjectedProvider =
       this.robinhoodWalletInjectedProvider;
     if (robinhoodWalletInjectedProvider) {
       return robinhoodWalletInjectedProvider;
     }
 
+    // TODO:
     // if we do not have injected provider, that means:
     // 1. Users are in mobile safari, we take users to app/google store
     // 2. Users are on Desktop, we show wallet connect
     // 3. Users are in mobile native dApp, we should deeplink into RH Wallet with wallet connect deeplink
+
+    return undefined;
   }
 
   get robinhoodWalletInjectedProvider(): IEthereumProvider | undefined {
